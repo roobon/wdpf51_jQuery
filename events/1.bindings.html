@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binding Elements</title>
+    <style>
+      ul {
+        background-color: #dcdcdc;
+        list-style: none;
+        margin: 0pt;
+        padding: 0pt;
+        width: 250px;
+      }
+      li {
+        cursor: pointer;
+        margin: 10px 0px;
+      }
+    </style>
+    <script src="../jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("input:text").bind({
+          focus: function () {
+            $(this).val("");
+          },
+          blur: function () {
+            $(this).val("Enter some text");
+          },
+        });
+        $("li").on("click", function () {
+          $(this).css("background-color", "red");
+        });
+        $("select").on("change", function () {
+          alert("You selected: " + $(this).val());
+        });
+        $("input:button").on("click", function () {
+          $("select").off("change");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <ul>
+      <li>India</li>
+      <li>USA</li>
+      <li>UK</li>
+      <li>France</li>
+    </ul>
+    <select>
+      <option value="Africa">Africa</option>
+      <option value="Antarctica">Antarctica</option>
+      <option value="Asia">Asia</option>
+      <option value="Australia">Australia</option>
+      <option value="Europe">Europe</option>
+      <option value="North America">North America</option>
+      <option value="South America">South America</option>
+    </select>
+    <input type="button" value="Unbind select box" />
+  </body>
+</html>
